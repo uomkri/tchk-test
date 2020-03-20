@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Tchk Test</string>
+    <string name="search_text">Search</string>
+    <string name="login_text">Insert user login</string>
+    <string name="user_avatar_desc">User Avatar</string>
+    <string name="search_field_hint">User login goes here</string>
+</resources>
