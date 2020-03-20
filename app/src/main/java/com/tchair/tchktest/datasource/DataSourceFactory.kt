@@ -26,6 +26,8 @@ class DataSourceFactory(private var query: String = ""): DataSource.Factory<Int,
 
     fun getSource() = dataSource.value
 
+
+
     fun updateQuery(query: String){
         this.query = query
         Log.i("query", this.query)

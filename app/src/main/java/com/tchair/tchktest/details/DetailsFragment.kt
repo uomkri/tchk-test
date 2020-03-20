@@ -12,6 +12,8 @@ class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentUserDetailsBinding
 
+    private lateinit var args: DetailsFragmentArgs
+
     private val viewModel: DetailsViewModel by lazy {
         ViewModelProviders.of(this).get(DetailsViewModel::class.java)
     }
@@ -22,9 +24,11 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+        args = DetailsFragmentArgs.fromBundle(arguments!!)
         binding = FragmentUserDetailsBinding.inflate(inflater)
         binding.setLifecycleOwner(this)
         binding.viewModel = viewModel
+        viewModel.getUser(args.login)
 
         return binding.root
     }

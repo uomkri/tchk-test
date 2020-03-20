@@ -17,10 +17,8 @@ class UsersSearchDataSource(private val scope: CoroutineScope, private var query
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, UserData>
     ) {
-        Log.i("DS", "USED SEARCH")
-        Log.i("query", "Got query $query")
+        //Log.i("query", "Got query $query")
 
-            //val getDataDeferred = GithubApi.retrofitService.getSearchData(query)
                 runQuery(1) {
                     callback.onResult(it, null, 2)
                 }

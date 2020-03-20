@@ -4,11 +4,15 @@ package com.tchair.tchktest.util
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
+import androidx.databinding.BindingAdapter
 import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.tchair.tchktest.R
 import com.tchair.tchktest.net.UserData
 
@@ -36,13 +40,6 @@ class UserDataAdapter() : PagedListAdapter<UserData, ViewHolder>(DiffUtilCallBac
         holder.login.text = item?.login
         holder.type.text = item?.type
         holder.id.text = item?.id.toString()
-        /*holder.itemView.setOnClickListener {
-            holder.itemView.findNavController().navigate()
-        }*/
-    }
-
-    class ListItemListener(val clickListener: (userLogin: String) -> Unit){
-        fun onClick(user: UserData) = clickListener(user.login)
     }
 
 }
@@ -65,4 +62,14 @@ class DiffUtilCallBack : DiffUtil.ItemCallback<UserData>() {
                 && oldItem.avatarUrl == newItem.avatarUrl
     }
 
+}
+
+@BindingAdapter("imageUrl")
+fun bindImage(imgView: ImageView, imgUrl: String?) {
+    imgUrl?.let {
+        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+        Glide.with(imgView.context)
+            .load(imgUri)
+            .into(imgView)
+    }
 }

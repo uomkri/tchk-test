@@ -29,7 +29,7 @@ private val retrofit = Retrofit.Builder()
 interface GithubApiService {
     @GET("users/{userLogin}")
     fun getUserData(
-        @Path("userLogin") userLogin: String
+        @Path("userLogin") userLogin: String?
     ): Deferred<User>
 
     @GET("search/users")
